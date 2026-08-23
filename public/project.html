@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Project — Adeola Tosin Amisu</title>
+<meta name="description" content="A closer look at a selected product and UX research project by Adeola Tosin Amisu."/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #FAF8FF; --surface: #F3EEF9; --card: #FFFFFF; --border: #E2D9F3;
+  --accent: #6B46A0; --accent-dark: #4A2D7A; --accent-light: #EDE7F6;
+  --accent-mid: #9270C8; --text: #1E1530; --muted: #6A5A7A; --hint: #A898B8;
+  --body: 'Montserrat', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--body); background: var(--bg); color: var(--text); line-height: 1.65; }
+a { color: inherit; }
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 7%; background: rgba(250,248,255,0.9);
+  backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand { font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: 700;
+  font-size: 1.05rem; letter-spacing: 0.04em; color: var(--accent-dark); text-decoration: none; text-transform: uppercase; }
+.site-nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+.nav-link { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; }
+.nav-link:hover { color: var(--accent); }
+@media (max-width: 720px) { .site-nav ul { gap: 1rem; } .nav-link { font-size: 0.62rem; letter-spacing: 0.1em; } }
+
+.p-hero {
+  padding: 8.5rem 7% 3rem;
+  background: linear-gradient(135deg, #2B1B4D 0%, #6B46A0 45%, #E4715C 100%);
+  color: #fff;
+}
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; }
+.back-link:hover { color: #fff; }
+.p-tag { margin-top: 1.6rem; display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.4rem 0.9rem; border-radius: 999px; }
+.p-hero h1 { font-family: 'Times New Roman', Times, serif; font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.1; margin: 1rem 0 0.9rem; font-weight: 700; }
+.p-hero p.lede { max-width: 720px; font-size: 1.02rem; color: rgba(255,255,255,0.9); }
+.p-meta { display: flex; flex-wrap: wrap; gap: 2.2rem; margin-top: 2rem; }
+.p-meta .lbl { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.65); font-weight: 700; }
+.p-meta .val { font-size: 0.92rem; font-weight: 600; }
+
+.p-cover { padding: 0 7%; margin-top: -2rem; }
+.p-cover img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 18px;
+  border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(107,70,160,0.18); display: block; }
+
+main.p-body { padding: 3.5rem 7% 4rem; max-width: 900px; }
+main.p-body h2 { font-family: 'Times New Roman', Times, serif; font-size: 1.6rem; margin: 2.4rem 0 0.8rem; color: var(--accent-dark); }
+main.p-body p { color: var(--muted); margin-bottom: 0.9rem; }
+main.p-body ul { margin: 0.4rem 0 1rem 1.1rem; color: var(--muted); }
+main.p-body li { margin-bottom: 0.5rem; }
+.highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 1.4rem; }
+.highlight { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.2rem; }
+.highlight .lbl { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.highlight .val { font-size: 0.92rem; margin-top: 0.35rem; color: var(--text); }
+.p-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 2.4rem; background: var(--accent);
+  color: #fff; text-decoration: none; padding: 0.85rem 1.6rem; border-radius: 999px;
+  font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.p-cta:hover { background: var(--accent-dark); }
+.p-next { padding: 0 7% 5rem; }
+.p-next h3 { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hint); margin-bottom: 1rem; }
+.p-next-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; }
+.p-next-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.2rem;
+  text-decoration: none; color: var(--text); transition: transform .18s, box-shadow .18s; }
+.p-next-card:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(107,70,160,0.14); }
+.p-next-card .t { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.p-next-card .n { margin-top: 0.35rem; font-weight: 600; font-size: 0.95rem; }
+footer { padding: 1.6rem 7%; border-top: 1px solid var(--border); font-size: 0.74rem; color: var(--hint); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="./portfolio.html#hero" class="nav-brand">Adeola Tosin Amisu</a>
+  <ul>
+    <li><a class="nav-link" href="./portfolio.html#hero">Home</a></li>
+    <li><a class="nav-link" href="./portfolio.html#about">About</a></li>
+    <li><a class="nav-link" href="./portfolio.html#casestudies">Work</a></li>
+    <li><a class="nav-link" href="./portfolio.html#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<header class="p-hero">
+  <a href="./portfolio.html#casestudies" class="back-link">← Back to Selected Projects</a>
+  <div class="p-tag" id="pTag"></div>
+  <h1 id="pTitle"></h1>
+  <p class="lede" id="pLede"></p>
+  <div class="p-meta" id="pMeta"></div>
+</header>
+
+<div class="p-cover"><img id="pCover" src="" alt=""/></div>
+
+<main class="p-body" id="pBody"></main>
+
+<section class="p-next">
+  <h3>More projects</h3>
+  <div class="p-next-grid" id="pNext"></div>
+</section>
+
+<footer>© <span id="yr"></span> Adeola Tosin Amisu</footer>
+
+<script>
+const PROJECTS = {
+  "lead-engagement-system": {
+    tag: "Systems Design · B2B",
+    title: "Lead Engagement System",
+    lede: "Rethinking the architecture behind how inbound leads are captured, routed and followed up, so no opportunity quietly disappears.",
+    cover: "./cs-cover-lead.jpg",
+    meta: [["Focus","Systems Design"],["Type","B2B"],["Format","Written case study"]],
+    sections: [
+      ["The problem","Leads arrived from several channels with no single source of truth. Ownership was unclear, follow-up depended on memory, and the team could not tell which stage was actually leaking value."],
+      ["Approach", null, [
+        "Mapped the full lead journey from first touch to qualified handover",
+        "Identified the breakpoints where context and ownership were lost",
+        "Designed a routing and status model that makes every lead accountable to one owner",
+        "Defined the events and fields needed to measure conversion at each stage"
+      ]],
+      ["What a better architecture looks like","A clean engagement system separates capture, enrichment, routing and follow-up into distinct layers, so each can be changed without breaking the others. Status becomes a shared language across sales, marketing and product rather than a private spreadsheet."]
+    ],
+    highlights: [["Outcome","Clear ownership per lead"],["Visibility","Stage-level conversion tracking"],["Reusable","Channel-agnostic routing model"]],
+    ctaLabel: "Read the full write-up on Hashnode",
+    ctaUrl: "https://adeolaamisu.hashnode.dev/lead-engagement-system-what-a-better-architecture-looks-like"
+  },
+  "ai-wellness-platform": {
+    tag: "AI · Product Design · B2B2C",
+    title: "AI-Powered Employee Wellness Platform",
+    lede: "Designing a wellness platform that uses AI to make employee wellbeing measurable, personal and genuinely useful to HR teams.",
+    cover: "./cs-cover-wellness.jpg",
+    meta: [["Focus","AI Product"],["Type","B2B2C"],["Platform","Mobile and Web"]],
+    sections: [
+      ["The problem","Corporate wellness tooling is fragmented. Employees get generic content, HR gets little signal, and engagement drops off after the first few weeks."],
+      ["Approach", null, [
+        "Ran discovery with HR stakeholders and employees to separate real needs from nice-to-haves",
+        "Framed the AI layer around personalised nudges and check-ins rather than novelty",
+        "Scoped an MVP covering tracking, an assistant experience and an expert marketplace",
+        "Defined success metrics around sustained engagement, not sign-ups"
+      ]],
+      ["Design decisions","Privacy shaped the architecture: individual data stays personal while organisations see aggregate trends. The assistant was designed to prompt small, repeatable actions instead of long programmes people abandon."]
+    ],
+    highlights: [["MVP","Tracking, assistant, marketplace"],["Users","Employees and HR leaders"],["Principle","Aggregate insight, private data"]],
+    ctaLabel: "Read the full write-up on Hashnode",
+    ctaUrl: "https://adeolaamisu.hashnode.dev/designing-an-ai-powered-employee-wellness-platform"
+  },
+  "pricing-model-strategy": {
+    tag: "Pricing Strategy · SaaS",
+    title: "Pricing Model Strategy for an SMB Booking Platform",
+    lede: "Moving a booking platform from a flat plan to a value-aligned pricing model that small businesses can grow into.",
+    cover: "./cs-cover-pricing.jpg",
+    meta: [["Focus","Monetisation"],["Type","SaaS"],["Segment","SMB"]],
+    sections: [
+      ["The problem","A single flat plan meant the smallest customers felt it was expensive and the largest ones were dramatically underpaying. Pricing was not connected to the value customers actually received."],
+      ["Approach", null, [
+        "Segmented customers by booking volume, team size and feature usage",
+        "Tested value metrics against willingness to pay and predictability of the bill",
+        "Modelled tier boundaries and revenue impact across the existing base",
+        "Planned a migration path that protects trust with current customers"
+      ]],
+      ["The recommendation","A tiered structure anchored on a value metric customers already understand, with a clear entry tier for new businesses and upgrade triggers that arrive naturally as they grow."]
+    ],
+    highlights: [["Model","Tiered, value-metric based"],["Goal","Expansion revenue without churn"],["Care","Grandfathered migration path"]],
+    ctaLabel: "Read the full write-up on Hashnode",
+    ctaUrl: "https://hashnode.com/edit/cmpfgsycf00rx2gmd61szd1hd"
+  },
+  "wolt-heuristic-evaluation": {
+    tag: "UX Research · Heuristic Evaluation",
+    title: "Wolt App — Heuristic Evaluation",
+    lede: "A structured usability review of the Wolt food delivery app, scoring the experience against Nielsen's ten usability heuristics.",
+    cover: "./cs-cover-wolt.jpg",
+    meta: [["Method","Heuristic Evaluation"],["Framework","Nielsen's 10 Heuristics"],["Product","Wolt mobile app"]],
+    sections: [
+      ["Objective","Assess the end-to-end ordering experience — discovery, selection, checkout and order tracking — and surface usability issues with severity ratings and practical recommendations."],
+      ["Method", null, [
+        "Walked the core user journeys as a first-time and returning user",
+        "Evaluated each screen against Nielsen's ten usability heuristics",
+        "Logged each issue with the heuristic violated, evidence and a severity rating",
+        "Prioritised findings by impact on task completion and translated them into recommendations"
+      ]],
+      ["Outcome","A prioritised issue log with concrete design recommendations, showing where friction most affects conversion and where small interface changes deliver the biggest usability gains. The full report includes annotated screens and severity scoring."]
+    ],
+    highlights: [["Scope","Discovery to order tracking"],["Output","Severity-rated issue log"],["Deliverable","Annotated report"]],
+    ctaLabel: "Open the full report",
+    ctaUrl: "https://drive.google.com/file/d/1mSuShUQsWhbd5-vBfFdDGMf1IYf43XmI/view?usp=sharing"
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('p');
+const p = PROJECTS[slug];
+
+if (!p) {
+  window.location.replace('./portfolio.html#casestudies');
+} else {
+  document.title = p.title + " — Adeola Tosin Amisu";
+  document.getElementById('pTag').textContent = p.tag;
+  document.getElementById('pTitle').textContent = p.title;
+  document.getElementById('pLede').textContent = p.lede;
+  document.getElementById('pMeta').innerHTML = p.meta
+    .map(([l,v]) => '<div><div class="lbl">'+l+'</div><div class="val">'+v+'</div></div>').join('');
+  const cover = document.getElementById('pCover');
+  cover.src = p.cover; cover.alt = p.title;
+
+  let html = '';
+  p.sections.forEach(([h, text, list]) => {
+    html += '<h2>' + h + '</h2>';
+    if (text) html += '<p>' + text + '</p>';
+    if (list) html += '<ul>' + list.map(i => '<li>' + i + '</li>').join('') + '</ul>';
+  });
+  html += '<div class="highlight-grid">' + p.highlights
+    .map(([l,v]) => '<div class="highlight"><div class="lbl">'+l+'</div><div class="val">'+v+'</div></div>').join('') + '</div>';
+  html += '<a class="p-cta" href="'+p.ctaUrl+'" target="_blank" rel="noopener">'+p.ctaLabel+' →</a>';
+  document.getElementById('pBody').innerHTML = html;
+
+  document.getElementById('pNext').innerHTML = Object.entries(PROJECTS)
+    .filter(([k]) => k !== slug)
+    .map(([k,v]) => '<a class="p-next-card" href="./project.html?p='+k+'"><div class="t">'+v.tag+'</div><div class="n">'+v.title+'</div></a>')
+    .join('');
+}
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
